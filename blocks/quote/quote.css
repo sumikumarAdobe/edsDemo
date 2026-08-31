@@ -1,0 +1,17 @@
+.quote.block {
+  margin: 24px 0;
+  padding: 8px 0 8px 24px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.quote.block .quote-quotation {
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.quote.block .quote-attribution {
+  margin-top: 12px;
+  font-size: var(--body-font-size-s);
+  color: var(--link-hover-color);
+}
