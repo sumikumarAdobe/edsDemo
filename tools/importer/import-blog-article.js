@@ -7,6 +7,7 @@ import columnsMinimalLightParser from './parsers/columns-minimal-light.js';
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/wknd-trendsetters-cleanup.js';
 import blockquoteTransformer from './transformers/wknd-trendsetters-blockquote.js';
+import specTableTransformer from './transformers/wknd-trendsetters-spec-table.js';
 import sectionsTransformer from './transformers/wknd-trendsetters-sections.js';
 
 // PARSER REGISTRY
@@ -40,6 +41,7 @@ const PAGE_TEMPLATE = {
 const transformers = [
   cleanupTransformer,
   blockquoteTransformer,
+  specTableTransformer,
   ...(PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [sectionsTransformer] : []),
 ];
 
