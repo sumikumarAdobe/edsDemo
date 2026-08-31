@@ -4,3 +4,4 @@ dompurify.min.js
 migration-work
 catalog
 tools/importer/*.bundle.js
+tools/importer/gen-jcr.mjs
