@@ -1,0 +1,31 @@
+{
+  "variantName": "accordion-minimal-light",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2026-08-31T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/",
+    "originPage": "landing-page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "faq",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "expandable question/answer items",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": ["FAQ sections on light backgrounds", "expandable Q&A lists"],
+    "notSuitableFor": ["dark accordion sections", "content requiring images per item"]
+  },
+  "usage": {
+    "pagesUsing": ["/index", "/faq"],
+    "reuseCount": 2,
+    "lastUsed": "2026-08-31T15:35:00.000Z"
+  }
+}

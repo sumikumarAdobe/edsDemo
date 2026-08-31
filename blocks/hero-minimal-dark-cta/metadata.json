@@ -1,0 +1,31 @@
+{
+  "variantName": "hero-minimal-dark-cta",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-08-31T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/",
+    "originPage": "landing-page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "cta-banner",
+    "imagePattern": "background"
+  },
+  "contentPattern": {
+    "structure": "background image + overlay + heading + text + 1 CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": ["full-width closing CTA banners", "dark promotional banners with background image"],
+    "notSuitableFor": ["light content heroes", "image-collage heroes"]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-31T00:00:00.000Z"
+  }
+}

@@ -1,20 +1,107 @@
+/* stylelint-disable no-descending-specificity -- selectors target distinct
+   footer regions (brand/social vs link columns); grouping by region reads
+   clearer than by specificity and there is no real cascade conflict. */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  font-size: var(--body-font-size-s);
 }
 
 footer .footer > div {
   margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  max-width: var(--content-max-width);
+  padding: 80px 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 }
 
 footer .footer p {
   margin: 0;
 }
 
+footer .footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer a {
+  color: var(--background-color);
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+/* brand + social block (first section) */
+footer .footer > div > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+footer .footer > div > div:first-child > p:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+footer .footer > div > div:first-child > p:first-child img {
+  width: 28px;
+  height: 28px;
+}
+
+/* social icon row */
+footer .footer > div > div:first-child ul {
+  display: flex;
+  gap: 16px;
+}
+
+footer .footer > div > div:first-child ul img {
+  width: 20px;
+  height: 20px;
+}
+
+footer .footer > div > div:first-child ul a {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+footer .footer > div > div:first-child ul a:hover {
+  opacity: 1;
+}
+
+/* link columns (sections with a heading) */
+footer .footer h2 {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #999;
+}
+
+footer .footer li {
+  margin: 0 0 10px;
+}
+
+footer .footer > div > div:not(:first-child) li a {
+  font-size: 15px;
+}
+
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 80px 32px;
+    gap: 48px;
   }
 }

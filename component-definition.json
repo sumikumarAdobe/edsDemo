@@ -83,6 +83,98 @@
       "id": "blocks",
       "components": [
         {
+          "title": "Accordion Minimal Light",
+          "id": "accordion-minimal-light",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Accordion Minimal Light",
+                  "filter": "accordion-minimal-light"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Accordion Minimal Light Item",
+          "id": "accordion-minimal-light-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Accordion Minimal Light Item",
+                  "model": "accordion-minimal-light-item",
+                  "summary": "Lorem Ipsum",
+                  "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur volutpat consequat dui, sit amet ...</p>"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Cards Minimal Light Img",
+          "id": "cards-minimal-light-img",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Cards Minimal Light Img",
+                  "filter": "cards-minimal-light-img"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Card",
+          "id": "card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Card",
+                  "model": "card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Cards Minimal Light Withimg",
+          "id": "cards-minimal-light-withimg",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Cards Minimal Light Withimg",
+                  "filter": "cards-minimal-light-withimg"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Card",
+          "id": "card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Card",
+                  "model": "card"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "plugins": {
@@ -107,6 +199,36 @@
                 "template": {
                   "name": "Card",
                   "model": "card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Minimal Light Contact",
+          "id": "columns-minimal-light-contact",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Minimal Light",
+          "id": "columns-minimal-light",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
                 }
               }
             }
@@ -143,6 +265,36 @@
           }
         },
         {
+          "title": "Hero Minimal Dark Cta",
+          "id": "hero-minimal-dark-cta",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Hero Minimal Dark Cta",
+                  "model": "hero-minimal-dark-cta"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Hero Minimal Light Withimg 1",
+          "id": "hero-minimal-light-withimg-1",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Hero Minimal Light Withimg 1",
+                  "model": "hero-minimal-light-withimg-1"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "plugins": {
@@ -152,6 +304,38 @@
                 "template": {
                   "name": "Hero",
                   "model": "hero"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Minimal Light Withimg",
+          "id": "tabs-minimal-light-withimg",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Tabs Minimal Light Withimg",
+                  "filter": "tabs-minimal-light-withimg"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Minimal Light Withimg Item",
+          "id": "tabs-minimal-light-withimg-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Tab",
+                  "model": "tabs-minimal-light-withimg-item",
+                  "title": "Tab Name",
+                  "content_headingType": "h3"
                 }
               }
             }

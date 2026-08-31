@@ -1,0 +1,75 @@
+/* columns-minimal-light-contact — "Let's connect" contact-details block */
+
+/* Source: https://wknd-trendsetters.site/faq (computed styles). Text-only two-column layout. */
+
+/* Row = grid container; mobile: single column, stacked. */
+.columns-minimal-light-contact > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+/* Each column: heading/value groups flow vertically */
+.columns-minimal-light-contact > div > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Left column — heading + intro paragraph */
+.columns-minimal-light-contact h2 {
+  margin: 0;
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: normal; /* source uses no negative tracking here */
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.columns-minimal-light-contact > div > div:first-child p {
+  margin: 32px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Right column — contact detail pairs (label above value) */
+.columns-minimal-light-contact h3 {
+  margin: 32px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--link-hover-color); /* #666 gray label */
+}
+
+.columns-minimal-light-contact h3:first-child {
+  margin-top: 0;
+}
+
+.columns-minimal-light-contact > div > div:last-child p {
+  margin: 8px 0 0; /* tight gap between label and value */
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.columns-minimal-light-contact > div > div:last-child a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.columns-minimal-light-contact > div > div:last-child a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Desktop: two equal columns with wide gutter (grid-gap-xxl = 64px) */
+@media (width >= 900px) {
+  .columns-minimal-light-contact > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+}

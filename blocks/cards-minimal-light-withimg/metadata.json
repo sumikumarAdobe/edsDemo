@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-minimal-light-withimg",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-31T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/",
+    "originPage": "landing-page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "article-cards",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "grid of cards (image + category tag + date + heading)",
+    "buttonCount": 0,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "article/blog card grids",
+      "content listing cards with image and metadata"
+    ],
+    "notSuitableFor": [
+      "image-only galleries",
+      "dark sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/index",
+      "/blog",
+      "/fashion-trends-young-adults-casual-sport"
+    ],
+    "reuseCount": 3,
+    "lastUsed": "2026-08-31T15:43:49.823343+00:00"
+  }
+}

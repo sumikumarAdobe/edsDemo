@@ -1,0 +1,73 @@
+/* Block: columns-minimal-light
+ * Case-study callout: image column + text column (breadcrumb/heading/byline).
+ * Values extracted from source computed styles at https://wknd-trendsetters.site/
+ */
+
+/* --- Row: mobile-first single column, image on top --- */
+.columns-minimal-light > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Image column --- */
+.columns-minimal-light img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.columns-minimal-light > div > div {
+  order: 1;
+}
+
+.columns-minimal-light > div > .columns-minimal-light-img-col {
+  order: 0;
+}
+
+/* --- Heading (Syncopate display, matches source 40px/44px) --- */
+.columns-minimal-light h2 {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+/* --- Byline metadata --- */
+.columns-minimal-light > div > div > p {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  line-height: 22.4px;
+  color: var(--text-color);
+}
+
+/* date / read-time line, secondary grey */
+.columns-minimal-light > div > div > p + p {
+  margin-top: 8px;
+  color: var(--link-hover-color);
+}
+
+/* author line sits below the heading */
+.columns-minimal-light > div > div > p:first-of-type {
+  margin-top: 16px;
+}
+
+/* --- Desktop: two equal columns, vertically centered --- */
+@media (width >= 900px) {
+  .columns-minimal-light > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .columns-minimal-light > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

@@ -1,0 +1,120 @@
+/* Block: hero-minimal-light-withimg-1
+ * Two-column hero: heading + subheading + two CTA buttons on the left,
+ * a three-image collage on the right. Values extracted from source
+ * computed styles at https://wknd-trendsetters.site/.
+ *
+ * Decorated EDS DOM:
+ *   .hero-...-1 > div:nth-child(1) > div   -> image collage cell (3x p>picture>img)
+ *   .hero-...-1 > div:nth-child(2) > div   -> text cell (h1, p, p>a, p>a)
+ */
+
+/* Block layout — mobile first: single column, text before images */
+.hero-minimal-light-withimg-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: stretch;
+  color: var(--text-color);
+}
+
+/* --- Headings & images (element-scoped, lowest specificity first) --- */
+.hero-minimal-light-withimg-1 h1 {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-minimal-light-withimg-1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.hero-minimal-light-withimg-1 picture {
+  display: block;
+}
+
+/* CTA buttons — first = primary (dark), second = secondary (outline) */
+.hero-minimal-light-withimg-1 a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  border: 2px solid var(--text-color);
+  border-radius: 9999px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.hero-minimal-light-withimg-1 a:hover,
+.hero-minimal-light-withimg-1 a:focus-visible {
+  border-color: var(--link-hover-color);
+  background-color: var(--link-hover-color);
+  color: var(--background-color);
+  text-decoration: none;
+}
+
+/* --- Column ordering: text first, collage second (DOM order reversed) --- */
+.hero-minimal-light-withimg-1 > div:nth-child(2) {
+  order: 1;
+}
+
+.hero-minimal-light-withimg-1 > div:nth-child(1) {
+  order: 2;
+}
+
+/* image collage cell */
+.hero-minimal-light-withimg-1 > div:nth-child(1) p {
+  margin: 0;
+  line-height: 0;
+}
+
+.hero-minimal-light-withimg-1 > div:nth-child(1) > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+/* text column: subheading paragraph */
+.hero-minimal-light-withimg-1 > div:nth-child(2) p {
+  margin: 24px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* button paragraphs sit inline with a gap */
+.hero-minimal-light-withimg-1 > div:nth-child(2) p:has(> a) {
+  display: inline-block;
+  margin: 32px 16px 0 0;
+}
+
+/* second CTA = secondary outline style */
+.hero-minimal-light-withimg-1 > div:nth-child(2) p:last-child a:any-link {
+  border-color: var(--text-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* --- Desktop: two equal columns, text left / collage right --- */
+@media (width >= 900px) {
+  .hero-minimal-light-withimg-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .hero-minimal-light-withimg-1 h1 {
+    font-size: 56px;
+  }
+}

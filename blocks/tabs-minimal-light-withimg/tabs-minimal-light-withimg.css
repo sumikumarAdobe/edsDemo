@@ -1,0 +1,118 @@
+/* Block: tabs-minimal-light-withimg
+   Testimonials tabs: active panel (image + name/role/quote) above a row of
+   selectable tabs. Values extracted from source computed styles. */
+
+.tabs-minimal-light-withimg {
+  display: flex;
+  flex-direction: column;
+}
+
+/* active panel above, tablist below (JS prepends the tablist) */
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-panel {
+  order: 1;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  order: 2;
+  margin-top: 24px;
+}
+
+/* ----- active panel ----- */
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-panel[aria-hidden='true'] {
+  display: none;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-panel > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-image {
+  margin: 0;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-image p {
+  margin: 0;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 568 / 426;
+  object-fit: cover;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-text {
+  margin: 0;
+}
+
+/* name (rendered as h3 in EDS, styled to match source body-font name) */
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-text h3 {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--text-color);
+}
+
+/* paragraphs: role (h3 + p) is smaller, quote keeps the base size */
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-text p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--text-color);
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-text h3 + p {
+  font-size: 16px;
+  line-height: 25.6px;
+  margin-bottom: 32px;
+}
+
+/* ----- tablist buttons ----- */
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-list button {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgb(232 232 232);
+  border-radius: 16px;
+  background-color: rgb(239 239 239);
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-list button p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tabs-minimal-light-withimg .tabs-minimal-light-withimg-list button[aria-selected='true'] {
+  border-color: var(--text-color);
+  background-color: var(--light-color);
+  cursor: default;
+}
+
+@media (width >= 900px) {
+  .tabs-minimal-light-withimg .tabs-minimal-light-withimg-panel > div {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tabs-minimal-light-withimg .tabs-minimal-light-withimg-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

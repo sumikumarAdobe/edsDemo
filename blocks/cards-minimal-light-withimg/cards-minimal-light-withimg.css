@@ -1,0 +1,94 @@
+/* cards-minimal-light-withimg — "Latest articles" article-card grid.
+   Values extracted from https://wknd-trendsetters.site/ computed styles. */
+
+.cards-minimal-light-withimg > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* card — source used an <a>; here the <li> is the card shell */
+.cards-minimal-light-withimg > ul > li {
+  border: 1px solid rgb(232 232 232);
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* image */
+.cards-minimal-light-withimg .cards-minimal-light-withimg-card-image {
+  line-height: 0;
+}
+
+.cards-minimal-light-withimg .cards-minimal-light-withimg-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+}
+
+/* card body */
+.cards-minimal-light-withimg .cards-minimal-light-withimg-card-body {
+  padding: 24px;
+}
+
+/* meta row: category pill + date */
+.cards-minimal-light-withimg .meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 12px;
+}
+
+.cards-minimal-light-withimg .tag {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+
+.cards-minimal-light-withimg .date {
+  color: var(--link-hover-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* heading — the article title link */
+.cards-minimal-light-withimg .card-heading-wrapper {
+  margin: 0;
+}
+
+.cards-minimal-light-withimg a.card-heading:any-link {
+  display: block;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.cards-minimal-light-withimg a.card-heading:any-link:hover {
+  text-decoration: none;
+  color: var(--link-hover-color);
+}
+
+@media (width >= 900px) {
+  .cards-minimal-light-withimg > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
