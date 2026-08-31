@@ -1,0 +1,57 @@
+/* Block: cards-minimal-light-img
+ * "Style in every snapshot" image gallery.
+ * Values extracted from source computed styles:
+ * 4-col grid, 12px gap, 1:1 square cells, 20px radius, overflow hidden, object-fit cover.
+ */
+
+.cards-minimal-light-img > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: 1 column */
+  gap: 12px;
+}
+
+.cards-minimal-light-img > ul > li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+  aspect-ratio: 1 / 1;      /* source utility-aspect-1x1 */
+  border-radius: 20px;      /* source */
+  overflow: hidden;         /* source */
+}
+
+.cards-minimal-light-img .cards-minimal-light-img-card-image {
+  line-height: 0;
+  height: 100%;
+}
+
+.cards-minimal-light-img .cards-minimal-light-img-card-image picture {
+  display: block;
+  height: 100%;
+}
+
+.cards-minimal-light-img > ul > li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* source */
+  border-radius: 0;
+  display: block;
+}
+
+/* tablet: 2 columns */
+@media (width >= 600px) {
+  .cards-minimal-light-img > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* desktop: 4 columns (source desktop-4-column) */
+@media (width >= 900px) {
+  .cards-minimal-light-img > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

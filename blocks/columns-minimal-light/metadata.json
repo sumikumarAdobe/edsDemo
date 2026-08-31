@@ -1,0 +1,42 @@
+{
+  "variantName": "columns-minimal-light",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-08-31T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/",
+    "originPage": "landing-page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "feature-callout",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + (breadcrumb + heading + byline metadata)",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "side-by-side image + text callouts",
+      "featured item highlights"
+    ],
+    "notSuitableFor": [
+      "repeating card grids",
+      "dark sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/index",
+      "/blog",
+      "/blog/ace-pro-court-polo",
+      "/fashion-trends-young-adults-casual-sport"
+    ],
+    "reuseCount": 4,
+    "lastUsed": "2026-08-31T15:43:49.823343+00:00"
+  }
+}

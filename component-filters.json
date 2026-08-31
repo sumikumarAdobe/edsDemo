@@ -19,9 +19,57 @@
     ]
   },
   {
+    "id": "accordion-minimal-light",
+    "components": [
+      "accordion-minimal-light-item"
+    ]
+  },
+  {
+    "id": "cards-minimal-light-img",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-minimal-light-withimg",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
+    ]
+  },
+  {
+    "id": "columns-minimal-light-contact",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "columns-minimal-light",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
     ]
   },
   {
@@ -37,6 +85,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "tabs-minimal-light-withimg",
+    "components": [
+      "tabs-minimal-light-withimg-item"
     ]
   }
 ]

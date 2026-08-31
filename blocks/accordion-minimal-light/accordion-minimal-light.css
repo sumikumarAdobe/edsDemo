@@ -1,0 +1,96 @@
+/*
+ * accordion-minimal-light
+ * Design extracted from https://wknd-trendsetters.site/ (.faq-list)
+ * Rounded outlined cards, plus icon that rotates into an X when open.
+ */
+
+.accordion-minimal-light {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* accordion item — rounded outlined card */
+.accordion-minimal-light .accordion-minimal-light-item {
+  border: 1px solid rgb(232 232 232);
+  border-radius: 16px;
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+/* summary / question row */
+.accordion-minimal-light .accordion-minimal-light-item-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 64px 24px 32px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--text-color);
+  transition: background-color 0.2s;
+}
+
+.accordion-minimal-light .accordion-minimal-light-item-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-minimal-light .accordion-minimal-light-item-label p {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-color);
+  text-transform: none;
+}
+
+/* plus icon (two 12x2 bars) that rotates 45deg into an X when open */
+.accordion-minimal-light .accordion-minimal-light-item-label::before,
+.accordion-minimal-light .accordion-minimal-light-item-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 34px;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: currentcolor;
+  transition: transform 0.2s ease;
+}
+
+/* horizontal bar */
+.accordion-minimal-light .accordion-minimal-light-item-label::before {
+  transform: translateY(-50%);
+}
+
+/* vertical bar */
+.accordion-minimal-light .accordion-minimal-light-item-label::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.accordion-minimal-light .accordion-minimal-light-item[open] .accordion-minimal-light-item-label::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.accordion-minimal-light .accordion-minimal-light-item[open] .accordion-minimal-light-item-label::after {
+  transform: translateY(-50%) rotate(135deg);
+}
+
+/* answer body */
+.accordion-minimal-light .accordion-minimal-light-item-body {
+  padding: 0 32px 32px;
+}
+
+.accordion-minimal-light .accordion-minimal-light-item:not([open]) .accordion-minimal-light-item-body {
+  display: none;
+}
+
+.accordion-minimal-light .accordion-minimal-light-item-body p {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgb(64 64 64);
+}

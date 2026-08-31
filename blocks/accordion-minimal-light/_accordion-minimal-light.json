@@ -1,0 +1,65 @@
+{
+  "definitions": [
+    {
+      "title": "Accordion Minimal Light",
+      "id": "accordion-minimal-light",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Accordion Minimal Light",
+              "filter": "accordion-minimal-light"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Accordion Minimal Light Item",
+      "id": "accordion-minimal-light-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Accordion Minimal Light Item",
+              "model": "accordion-minimal-light-item",
+              "summary": "Lorem Ipsum",
+              "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur volutpat consequat dui, sit amet ...</p>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "accordion-minimal-light-item",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "summary",
+          "value": "",
+          "label": "Summary"
+        },
+        {
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "accordion-minimal-light",
+      "components": [
+        "accordion-minimal-light-item"
+      ]
+    }
+  ]
+}
