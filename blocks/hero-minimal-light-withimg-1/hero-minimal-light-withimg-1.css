@@ -3,13 +3,14 @@
  * a three-image collage on the right. Values extracted from source
  * computed styles at https://wknd-trendsetters.site/.
  *
- * Decorated EDS DOM:
- *   .hero-...-1 > div:nth-child(1) > div   -> image collage cell (3x p>picture>img)
- *   .hero-...-1 > div:nth-child(2) > div   -> text cell (h1, p, p>a, p>a)
+ * Decorated EDS DOM (single row, two cells):
+ *   .hero-...-1 > div                    -> the row
+ *   .hero-...-1 > div > div:nth-child(1) -> images cell (3x p>picture>img)
+ *   .hero-...-1 > div > div:nth-child(2) -> text cell (h1, p, p>a, p>a)
  */
 
-/* Block layout — mobile first: single column, text before images */
-.hero-minimal-light-withimg-1 {
+/* Row layout — mobile first: single column, text before images */
+.hero-minimal-light-withimg-1 > div {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -64,28 +65,25 @@
 }
 
 /* --- Column ordering: text first, collage second (DOM order reversed) --- */
-.hero-minimal-light-withimg-1 > div:nth-child(2) {
+.hero-minimal-light-withimg-1 > div > div:nth-child(2) {
   order: 1;
 }
 
-.hero-minimal-light-withimg-1 > div:nth-child(1) {
-  order: 2;
-}
-
 /* image collage cell */
-.hero-minimal-light-withimg-1 > div:nth-child(1) p {
-  margin: 0;
-  line-height: 0;
-}
-
-.hero-minimal-light-withimg-1 > div:nth-child(1) > div {
+.hero-minimal-light-withimg-1 > div > div:nth-child(1) {
+  order: 2;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
 
+.hero-minimal-light-withimg-1 > div > div:nth-child(1) p {
+  margin: 0;
+  line-height: 0;
+}
+
 /* text column: subheading paragraph */
-.hero-minimal-light-withimg-1 > div:nth-child(2) p {
+.hero-minimal-light-withimg-1 > div > div:nth-child(2) p {
   margin: 24px 0 0;
   font-size: var(--body-font-size-m);
   line-height: 1.6;
@@ -93,13 +91,13 @@
 }
 
 /* button paragraphs sit inline with a gap */
-.hero-minimal-light-withimg-1 > div:nth-child(2) p:has(> a) {
+.hero-minimal-light-withimg-1 > div > div:nth-child(2) p:has(> a) {
   display: inline-block;
   margin: 32px 16px 0 0;
 }
 
 /* second CTA = secondary outline style */
-.hero-minimal-light-withimg-1 > div:nth-child(2) p:last-child a:any-link {
+.hero-minimal-light-withimg-1 > div > div:nth-child(2) p:last-child a:any-link {
   border-color: var(--text-color);
   background-color: var(--background-color);
   color: var(--text-color);
@@ -107,7 +105,7 @@
 
 /* --- Desktop: two equal columns, text left / collage right --- */
 @media (width >= 900px) {
-  .hero-minimal-light-withimg-1 {
+  .hero-minimal-light-withimg-1 > div {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 64px;

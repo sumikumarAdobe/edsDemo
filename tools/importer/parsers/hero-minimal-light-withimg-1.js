@@ -2,16 +2,16 @@
 /* global WebImporter */
 /**
  * Parser for hero-minimal-light-withimg-1
- * Base block: hero
+ * Base block: hero (2-column: image collage + text)
  * Source: https://wknd-trendsetters.site/
- * Generated: 2026-08-31
  *
- * Structure (library: 1 column, up to 3 rows):
+ * Structure — ONE content row with TWO cells (matches the 2-field model):
  *   Row 1: block name (handled by createBlock)
- *   Row 2: image cell        -> field:image  (background/hero images)
- *   Row 3: text cell         -> field:text   (heading, subheading, CTAs)
+ *   Row 2, cell 1: images  -> field:images (3-image collage, richtext)
+ *   Row 2, cell 2: text    -> field:text   (heading, subheading, CTAs, richtext)
  *
- * Model fields: image (reference), imageAlt (collapsed onto image), text (richtext).
+ * Model fields: images (richtext), text (richtext). Both richtext so the
+ * multi-image collage survives and every field aligns with a column/cell.
  */
 export default function parse(element, { document }) {
   // --- Extract content (selectors validated against source.html) ---
@@ -26,25 +26,24 @@ export default function parse(element, { document }) {
     return;
   }
 
-  const cells = [];
+  // Cell 1: images — field:images (wrap each image in its own <p> for richtext)
+  const imageCell = document.createDocumentFragment();
+  imageCell.appendChild(document.createComment(' field:images '));
+  images.forEach((img) => {
+    const p = document.createElement('p');
+    p.appendChild(img);
+    imageCell.appendChild(p);
+  });
 
-  // Row 2: image(s) — field:image
-  if (images.length) {
-    const imageCell = document.createDocumentFragment();
-    imageCell.appendChild(document.createComment(' field:image '));
-    images.forEach((img) => imageCell.appendChild(img));
-    cells.push([imageCell]);
-  } else {
-    cells.push(['']);
-  }
-
-  // Row 3: text (heading + subheading + CTAs) — field:text
+  // Cell 2: text — field:text (heading + subheading + CTAs)
   const textCell = document.createDocumentFragment();
   textCell.appendChild(document.createComment(' field:text '));
   if (heading) textCell.appendChild(heading);
   if (subheading) textCell.appendChild(subheading);
   ctaLinks.forEach((a) => textCell.appendChild(a));
-  cells.push([textCell]);
+
+  // Single row, two cells — one cell per model field.
+  const cells = [[imageCell, textCell]];
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'hero-minimal-light-withimg-1', cells });
   element.replaceWith(block);
