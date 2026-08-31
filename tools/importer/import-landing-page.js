@@ -135,6 +135,25 @@ export default {
     const hr = document.createElement('hr');
     main.appendChild(hr);
     WebImporter.rules.createMetadata(main, document);
+    // Carry the source meta description into the metadata block when createMetadata
+    // omits it, so imported pages keep their SEO description. createMetadata appends
+    // a `.metadata` table to `main`; locate it and add a Description row.
+    try {
+      const descEl = document.querySelector('meta[name="description"], meta[property="og:description"]');
+      const desc = descEl && descEl.getAttribute('content');
+      const metaBlock = main.querySelector('.metadata');
+      if (metaBlock && desc && !/Description/i.test(metaBlock.textContent || '')) {
+        const row = document.createElement('div');
+        const keyCell = document.createElement('div');
+        keyCell.textContent = 'Description';
+        const valCell = document.createElement('div');
+        valCell.textContent = desc;
+        row.append(keyCell, valCell);
+        metaBlock.append(row);
+      }
+    } catch (e) {
+      console.error('meta description injection failed:', e);
+    }
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
