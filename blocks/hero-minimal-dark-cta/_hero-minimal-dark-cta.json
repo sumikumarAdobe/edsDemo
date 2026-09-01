@@ -21,7 +21,7 @@
       "id": "hero-minimal-dark-cta",
       "fields": [
         {
-          "component": "reference",
+          "component": "richtext",
           "valueType": "string",
           "name": "image",
           "label": "Image",
