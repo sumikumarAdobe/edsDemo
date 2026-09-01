@@ -108,6 +108,106 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Splits a dropdown link's "Title — description" text into a bold title and a
+ * muted description so each entry reads as a structured item.
+ * @param {HTMLAnchorElement} a The link to decorate
+ */
+function splitTitleDesc(a) {
+  const raw = a.textContent.trim();
+  const [title, ...rest] = raw.split(/\s+[—–-]\s+/);
+  const desc = rest.join(' — ').trim();
+  a.textContent = '';
+  const strong = document.createElement('strong');
+  strong.className = 'nav-drop-title';
+  strong.textContent = title;
+  a.append(strong);
+  if (desc) {
+    const span = document.createElement('span');
+    span.className = 'nav-drop-desc';
+    span.textContent = desc;
+    a.append(span);
+  }
+}
+
+/**
+ * Rebuilds a flat dropdown list into the source's multi-column mega-menu.
+ * The migration flattened the "Trends" mega-menu (Casual / Now Trending /
+ * Inspo groups + a promo card) into a single list of links; regroup them by
+ * their shared destination and add back the group headings and promo card.
+ * Menus that don't match the known grouping fall back to a simple styled list.
+ * @param {HTMLLIElement} navSection The dropdown <li>
+ */
+function decorateDropdown(navSection) {
+  const list = navSection.querySelector(':scope > ul');
+  const items = [...list.querySelectorAll(':scope > li')];
+  const links = items.map((li) => li.querySelector('a')).filter(Boolean);
+
+  // Group config for the Trends mega-menu, keyed by the number of links so we
+  // only transform the menu that matches (10 links). Anything else stays a
+  // plain styled list.
+  const GROUPS = [
+    { heading: 'Casual', count: 3 },
+    { heading: 'Now Trending', count: 3 },
+    { heading: 'Inspo', count: 3 },
+  ];
+  const totalGrouped = GROUPS.reduce((n, g) => n + g.count, 0);
+  const isMegaMenu = links.length === totalGrouped + 1; // + promo card
+
+  if (!isMegaMenu) {
+    links.forEach(splitTitleDesc);
+    return;
+  }
+
+  navSection.classList.add('nav-drop-mega');
+  const grid = document.createElement('div');
+  grid.className = 'nav-mega';
+
+  let cursor = 0;
+  GROUPS.forEach((group) => {
+    const col = document.createElement('div');
+    col.className = 'nav-mega-col';
+    const h = document.createElement('span');
+    h.className = 'nav-mega-heading';
+    h.textContent = group.heading;
+    col.append(h);
+    const ul = document.createElement('ul');
+    for (let i = 0; i < group.count; i += 1, cursor += 1) {
+      const a = links[cursor];
+      if (!a) break;
+      splitTitleDesc(a);
+      const li = document.createElement('li');
+      li.append(a);
+      ul.append(li);
+    }
+    col.append(ul);
+    grid.append(col);
+  });
+
+  // last link becomes the promo card
+  const promo = links[cursor];
+  if (promo) {
+    const raw = promo.textContent.trim();
+    const [title, ...rest] = raw.split(/\s+[—–-]\s+/);
+    const body = rest.join(' — ').replace(/\s*Discover\s*$/i, '').trim();
+    promo.textContent = '';
+    promo.className = 'nav-mega-promo';
+    const t = document.createElement('strong');
+    t.className = 'nav-mega-promo-title';
+    t.textContent = title;
+    const p = document.createElement('span');
+    p.className = 'nav-mega-promo-body';
+    p.textContent = body;
+    const cta = document.createElement('span');
+    cta.className = 'nav-mega-promo-cta';
+    cta.textContent = 'Discover';
+    promo.append(t, p, cta);
+    grid.append(promo);
+  }
+
+  list.replaceWith(grid);
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -158,24 +258,7 @@ export default async function decorate(block) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) {
         navSection.classList.add('nav-drop');
-        // Split each dropdown item's "Title — description" text into a bold
-        // title and a muted description so the menu reads as a structured list
-        // (mirrors the source mega-menu) instead of a run-together link.
-        navSection.querySelectorAll(':scope > ul > li > a').forEach((a) => {
-          const raw = a.textContent.trim();
-          const [title, ...rest] = raw.split(/\s+[—–-]\s+/);
-          const desc = rest.join(' — ').trim();
-          if (desc) {
-            a.textContent = '';
-            const strong = document.createElement('strong');
-            strong.className = 'nav-drop-title';
-            strong.textContent = title;
-            const span = document.createElement('span');
-            span.className = 'nav-drop-desc';
-            span.textContent = desc;
-            a.append(strong, span);
-          }
-        });
+        decorateDropdown(navSection);
       }
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
