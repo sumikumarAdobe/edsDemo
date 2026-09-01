@@ -139,7 +139,27 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      if (navSection.querySelector('ul')) {
+        navSection.classList.add('nav-drop');
+        // Split each dropdown item's "Title — description" text into a bold
+        // title and a muted description so the menu reads as a structured list
+        // (mirrors the source mega-menu) instead of a run-together link.
+        navSection.querySelectorAll(':scope > ul > li > a').forEach((a) => {
+          const raw = a.textContent.trim();
+          const [title, ...rest] = raw.split(/\s+[—–-]\s+/);
+          const desc = rest.join(' — ').trim();
+          if (desc) {
+            a.textContent = '';
+            const strong = document.createElement('strong');
+            strong.className = 'nav-drop-title';
+            strong.textContent = title;
+            const span = document.createElement('span');
+            span.className = 'nav-drop-desc';
+            span.textContent = desc;
+            a.append(strong, span);
+          }
+        });
+      }
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
