@@ -33,6 +33,26 @@ async function decorateSocialIcons(footer) {
 }
 
 /**
+ * Normalizes the footer brand lockup. Published content can split the logo and
+ * the "Fashion Blog" text across two paragraphs (text first, logo second);
+ * merge them into a single paragraph with the logo ahead of the text so the
+ * logo always renders to the left.
+ * @param {Element} footer The footer container element
+ */
+function decorateBrand(footer) {
+  const section = footer.querySelector('.default-content-wrapper') || footer;
+  const media = section.querySelector('picture, img:not(ul img)');
+  if (!media) return;
+  const brandPara = media.closest('p');
+  const linkPara = [...section.querySelectorAll(':scope > p')]
+    .find((p) => p !== brandPara && p.querySelector('a[href]') && !p.querySelector('picture, img'));
+  if (!brandPara || !linkPara) return;
+  // put the logo first, then the text link, in the brand paragraph
+  [...linkPara.childNodes].forEach((node) => brandPara.appendChild(node));
+  linkPara.remove();
+}
+
+/**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
@@ -47,6 +67,7 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
+  decorateBrand(footer);
   await decorateSocialIcons(footer);
 
   block.append(footer);

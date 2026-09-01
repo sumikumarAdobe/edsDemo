@@ -136,6 +136,23 @@ export default async function decorate(block) {
     brandLink.closest('.button-container').className = '';
   }
 
+  // Normalize the brand lockup: published content can split the logo and the
+  // "Fashion Blog" text across two paragraphs (text first, logo second). Merge
+  // them into a single paragraph with the logo image ahead of the text so the
+  // logo always renders to the left, regardless of source order.
+  const brandWrapper = navBrand.querySelector('.default-content-wrapper') || navBrand;
+  const brandParas = [...brandWrapper.querySelectorAll(':scope > p')];
+  if (brandParas.length > 1) {
+    const target = brandParas[0];
+    const media = brandWrapper.querySelector('picture, img');
+    if (media && !target.contains(media)) target.prepend(media);
+    // move remaining content (the text link) from the other paragraphs in
+    brandParas.slice(1).forEach((p) => {
+      [...p.childNodes].forEach((node) => target.appendChild(node));
+      p.remove();
+    });
+  }
+
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {

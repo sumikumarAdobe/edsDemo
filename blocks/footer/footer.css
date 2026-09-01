@@ -44,12 +44,15 @@ footer .footer > div > div:first-child {
   gap: 24px;
 }
 
+/* brand lockup — footer.js merges the logo + text into one paragraph so the
+   logo always sits left of the text (source content may split them). */
 footer .footer > div > div:first-child > p:first-child {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   font-size: 18px;
   font-weight: 700;
+  margin: 0;
 }
 
 footer .footer > div > div:first-child > p:first-child img {
