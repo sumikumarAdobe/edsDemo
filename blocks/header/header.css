@@ -148,6 +148,14 @@ header .nav-brand {
   line-height: 1;
 }
 
+/* logo img and "Fashion Blog" text are siblings inside the brand paragraph —
+   flex the paragraph so they align on a shared vertical center */
+header .nav-brand p {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 header .nav-brand a:any-link {
   display: inline-flex;
   align-items: center;
