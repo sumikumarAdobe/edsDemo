@@ -164,7 +164,7 @@
     "id": "card",
     "fields": [
       {
-        "component": "reference",
+        "component": "richtext",
         "valueType": "string",
         "name": "image",
         "label": "Image",
@@ -183,7 +183,7 @@
     "id": "card",
     "fields": [
       {
-        "component": "reference",
+        "component": "richtext",
         "valueType": "string",
         "name": "image",
         "label": "Image",
@@ -288,7 +288,7 @@
     "id": "hero-minimal-dark-cta",
     "fields": [
       {
-        "component": "reference",
+        "component": "richtext",
         "valueType": "string",
         "name": "image",
         "label": "Image",
@@ -417,7 +417,7 @@
         ]
       },
       {
-        "component": "reference",
+        "component": "richtext",
         "valueType": "string",
         "name": "content_image",
         "label": "Image",
