@@ -225,6 +225,12 @@ header nav .nav-sections ul > li > ul > li {
     align-self: unset;
   }
 
+  /* center the nav in the bar (source centers items between logo & Subscribe) */
+  header nav .nav-sections .default-content-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
   /* top-level items: match source — flex row, 8px gap, per-item padding */
   header nav .nav-sections .default-content-wrapper > ul {
     display: flex;
@@ -251,7 +257,8 @@ header nav .nav-sections ul > li > ul > li {
     text-decoration: none;
   }
 
-  header nav .nav-sections .nav-drop {
+  /* dropdown triggers need room on the right for the caret */
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop {
     padding-right: 28px;
     cursor: pointer;
   }
