@@ -63,7 +63,8 @@ footer .footer > div > div:first-child ul {
   gap: 16px;
 }
 
-footer .footer > div > div:first-child ul img {
+footer .footer > div > div:first-child ul img,
+footer .footer > div > div:first-child ul svg {
   width: 20px;
   height: 20px;
 }
@@ -72,6 +73,7 @@ footer .footer > div > div:first-child ul a {
   display: inline-flex;
   width: 20px;
   height: 20px;
+  color: currentcolor;
   opacity: 0.85;
   transition: opacity 0.2s ease, color 0.2s ease;
 }
