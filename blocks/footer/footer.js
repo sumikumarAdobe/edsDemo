@@ -39,17 +39,37 @@ async function decorateSocialIcons(footer) {
  * logo always renders to the left.
  * @param {Element} footer The footer container element
  */
-function decorateBrand(footer) {
+async function decorateBrand(footer) {
   const section = footer.querySelector('.default-content-wrapper') || footer;
   const media = section.querySelector('picture, img:not(ul img)');
   if (!media) return;
   const brandPara = media.closest('p');
   const linkPara = [...section.querySelectorAll(':scope > p')]
     .find((p) => p !== brandPara && p.querySelector('a[href]') && !p.querySelector('picture, img'));
-  if (!brandPara || !linkPara) return;
-  // put the logo first, then the text link, in the brand paragraph
-  [...linkPara.childNodes].forEach((node) => brandPara.appendChild(node));
-  linkPara.remove();
+  if (brandPara && linkPara) {
+    // put the logo first, then the text link, in the brand paragraph
+    [...linkPara.childNodes].forEach((node) => brandPara.appendChild(node));
+    linkPara.remove();
+  }
+
+  // The logo SVG uses `fill: currentColor`; as an <img> on the dark footer it
+  // renders black (invisible). Inline the repo /icons/logo.svg so it inherits
+  // the footer's white text color, matching the header.
+  const logoImg = section.querySelector('picture img, img:not(ul img)');
+  if (logoImg) {
+    try {
+      const resp = await fetch(`${window.hlx.codeBasePath}/icons/logo.svg`);
+      if (resp.ok) {
+        const svg = await resp.text();
+        const holder = document.createElement('span');
+        holder.className = 'footer-logo';
+        holder.innerHTML = svg;
+        (logoImg.closest('picture') || logoImg).replaceWith(holder);
+      }
+    } catch (e) {
+      // keep the original <img> on failure
+    }
+  }
 }
 
 /**
@@ -67,7 +87,7 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-  decorateBrand(footer);
+  await decorateBrand(footer);
   await decorateSocialIcons(footer);
 
   block.append(footer);

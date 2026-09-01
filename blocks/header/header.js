@@ -112,21 +112,48 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * muted description so each entry reads as a structured item.
  * @param {HTMLAnchorElement} a The link to decorate
  */
-function splitTitleDesc(a) {
+// cache for inlined icon SVGs so each is fetched at most once
+const iconCache = new Map();
+
+async function getIconSvg(name) {
+  if (!iconCache.has(name)) {
+    iconCache.set(name, fetch(`${window.hlx.codeBasePath}/icons/${name}.svg`)
+      .then((r) => (r.ok ? r.text() : ''))
+      .catch(() => ''));
+  }
+  return iconCache.get(name);
+}
+
+async function splitTitleDesc(a, icon) {
   const raw = a.textContent.trim();
   const [title, ...rest] = raw.split(/\s+[—–-]\s+/);
   const desc = rest.join(' — ').trim();
   a.textContent = '';
+
+  // optional leading icon — inlined so the currentColor SVG inherits text color
+  if (icon) {
+    const svg = await getIconSvg(icon);
+    if (svg) {
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'nav-mega-icon';
+      iconSpan.innerHTML = svg;
+      a.append(iconSpan);
+    }
+  }
+
+  const text = document.createElement('span');
+  text.className = 'nav-drop-text';
   const strong = document.createElement('strong');
   strong.className = 'nav-drop-title';
   strong.textContent = title;
-  a.append(strong);
+  text.append(strong);
   if (desc) {
     const span = document.createElement('span');
     span.className = 'nav-drop-desc';
     span.textContent = desc;
-    a.append(span);
+    text.append(span);
   }
+  a.append(text);
 }
 
 /**
@@ -137,7 +164,7 @@ function splitTitleDesc(a) {
  * Menus that don't match the known grouping fall back to a simple styled list.
  * @param {HTMLLIElement} navSection The dropdown <li>
  */
-function decorateDropdown(navSection) {
+async function decorateDropdown(navSection) {
   const list = navSection.querySelector(':scope > ul');
   const items = [...list.querySelectorAll(':scope > li')];
   const links = items.map((li) => li.querySelector('a')).filter(Boolean);
@@ -146,15 +173,15 @@ function decorateDropdown(navSection) {
   // only transform the menu that matches (10 links). Anything else stays a
   // plain styled list.
   const GROUPS = [
-    { heading: 'Casual', count: 3 },
-    { heading: 'Now Trending', count: 3 },
-    { heading: 'Inspo', count: 3 },
+    { heading: 'Casual', count: 3, icon: 'nav-trend' },
+    { heading: 'Now Trending', count: 3, icon: 'nav-trend' },
+    { heading: 'Inspo', count: 3, icon: 'nav-doc' },
   ];
   const totalGrouped = GROUPS.reduce((n, g) => n + g.count, 0);
   const isMegaMenu = links.length === totalGrouped + 1; // + promo card
 
   if (!isMegaMenu) {
-    links.forEach(splitTitleDesc);
+    await Promise.all(links.map((a) => splitTitleDesc(a)));
     return;
   }
 
@@ -163,6 +190,7 @@ function decorateDropdown(navSection) {
   grid.className = 'nav-mega';
 
   let cursor = 0;
+  const pending = [];
   GROUPS.forEach((group) => {
     const col = document.createElement('div');
     col.className = 'nav-mega-col';
@@ -174,7 +202,7 @@ function decorateDropdown(navSection) {
     for (let i = 0; i < group.count; i += 1, cursor += 1) {
       const a = links[cursor];
       if (!a) break;
-      splitTitleDesc(a);
+      pending.push(splitTitleDesc(a, group.icon));
       const li = document.createElement('li');
       li.append(a);
       ul.append(li);
@@ -182,6 +210,7 @@ function decorateDropdown(navSection) {
     col.append(ul);
     grid.append(col);
   });
+  await Promise.all(pending);
 
   // last link becomes the promo card
   const promo = links[cursor];
